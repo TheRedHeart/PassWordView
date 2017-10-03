@@ -42,8 +42,8 @@ public class PassWordView extends View {
 
     private boolean isShowRemindLine = true;// true 显示提示光标 默认显示
 
-    private int mWidth = 45;
-    private int mheight = 45;
+    private int mWidth = 40;
+    private int mheight = 40;
 
     private String mPassText = "";//要绘制的文字
 
