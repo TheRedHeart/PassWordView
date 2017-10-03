@@ -1,5 +1,5 @@
-# PassWordViewDemo
-**[简书博客](http://www.jianshu.com/p/da7c88f75ebb)**
+# PassWordViewDemo     **[简书博客](http://www.jianshu.com/p/da7c88f75ebb)**
+
 ![](http://upload-images.jianshu.io/upload_images/2089169-662ba2bb6fd60a03.gif?imageMogr2/auto-orient/strip)
 ![](http://upload-images.jianshu.io/upload_images/2089169-5b2015e009a2a1c1.gif?imageMogr2/auto-orient/strip)
 
@@ -21,7 +21,6 @@
         <attr name="box_no_input_color" format="reference"></attr>//输入框未输入状态颜色
         <attr name="input_line_color" format="reference"></attr>//输入线颜色
         <attr name="text_input_color" format="reference"></attr>//文本颜色
-        <attr name="box_inputed_color" format="integer"></attr>//已输入状态颜色
         <attr name="interval_width" format="integer"></attr>//间隔
         <attr name="item_width" format="integer"></attr>//子View宽
         <attr name="item_height" format="integer"></attr>//子View高

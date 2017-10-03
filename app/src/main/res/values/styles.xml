@@ -15,7 +15,6 @@
         <attr name="box_no_input_color" format="reference"></attr>//输入框未输入状态颜色
         <attr name="input_line_color" format="reference"></attr>//输入线颜色
         <attr name="text_input_color" format="reference"></attr>//文本颜色
-        <attr name="box_inputed_color" format="integer"></attr>//已输入状态颜色
         <attr name="interval_width" format="integer"></attr>//间隔
         <attr name="item_width" format="integer"></attr>//子View宽
         <attr name="item_height" format="integer"></attr>//子View高
