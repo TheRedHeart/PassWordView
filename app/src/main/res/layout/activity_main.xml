@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.lxj.passView.view.PassWordLayout
+        android:id="@+id/passLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_tipsinfo"
+        android:layout_marginTop="44px"
+        app:box_draw_type="rect"
+        app:interval_width="4"
+        app:item_height="35"
+        app:item_width="35"
+        app:pass_inputed_type="stars"
+        app:pass_leng="six" />
+
+    <com.lxj.passView.view.PassWordLayout
+        android:id="@+id/pa2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_tipsinfo"
+        android:layout_marginTop="44px"
+        app:box_draw_type="circle"
+        app:interval_width="4"
+        app:item_height="38"
+        app:item_width="38"
+        app:pass_inputed_type="circle"
+        app:pass_leng="six" />
+
+    <com.lxj.passView.view.PassWordLayout
+        android:id="@+id/pa3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_tipsinfo"
+        android:layout_marginTop="44px"
+        app:box_draw_type="line"
+        app:draw_txt_size="20"
+        app:interval_width="6"
+        app:pass_inputed_type="text"
+        app:pass_leng="four" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="清除第三个密码" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取第三个密码" />
+
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="pass_view_rect_input">#3DA3FF</color>
+    <color name="regi_line_color">#c8c8c8</color>
+
+    <color name="color_common_black">#000000</color>
+    <color name="color_common_gray">#c6c6c6</color>
+</resources>

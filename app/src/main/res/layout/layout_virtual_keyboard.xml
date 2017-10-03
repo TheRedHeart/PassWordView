@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- 输入键盘 -->
+    <GridView
+        android:layout_alignParentBottom="true"
+        android:scrollbars="none"
+        android:id="@+id/gv_keybord"
+        android:background="@color/color_common_black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="1px"
+        android:numColumns="3"
+        android:verticalSpacing="1px" />
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@id/gv_keybord"
+        android:background="#bdbdbd" />
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/layoutBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/line"
+        android:background="#f5f5f5"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/keyboard_back_img"
+             />
+    </FrameLayout>
+
+    <View
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@id/layoutBack"
+        android:layout_marginTop="1dp"
+        android:background="#bdbdbd" />
+
+</RelativeLayout>
