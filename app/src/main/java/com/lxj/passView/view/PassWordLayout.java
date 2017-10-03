@@ -26,7 +26,6 @@ import java.util.List;
  * 用于数字输入View
  * Created by lxj on 2017-03-06.
  */
-
 public class PassWordLayout extends LinearLayout {
 
     private int maxLength = 6; //密码长度
