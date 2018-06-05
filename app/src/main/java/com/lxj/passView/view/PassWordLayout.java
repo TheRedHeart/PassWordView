@@ -15,8 +15,8 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
+
 import com.lxj.passView.R;
-import com.lxj.passView.utils.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +41,17 @@ public class PassWordLayout extends LinearLayout {
     private Context mContext;
 
     private boolean mIsShowInputLine;
+    private int mInputColor;
+    private int mNoinputColor;
+    private int mLineColor;
+    private int mTxtInputColor;
+    private int mDrawType;
+    private int mInterval;
+    private int mItemWidth;
+    private int mItemHeight;
+    private int mShowPassType;
+    private int mTxtSize;
+    private int mBoxLineSize;
 
 
     public void setPwdChangeListener(pwdChangeListener pwdChangeListener) {
@@ -68,18 +79,18 @@ public class PassWordLayout extends LinearLayout {
         mContext = context;
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.PassWordLayoutStyle);
 
-        int inputColor = ta.getResourceId(R.styleable.PassWordLayoutStyle_box_input_color, R.color.pass_view_rect_input);
-        int noinputColor = ta.getResourceId(R.styleable.PassWordLayoutStyle_box_no_input_color, R.color.color_common_gray);
-        int lineColor = ta.getResourceId(R.styleable.PassWordLayoutStyle_input_line_color, R.color.pass_view_rect_input);
-        int txtInputColor = ta.getResourceId(R.styleable.PassWordLayoutStyle_text_input_color, R.color.pass_view_rect_input);
-        int drawType = ta.getInt(R.styleable.PassWordLayoutStyle_box_draw_type, 0);
-        int interval = ta.getInt(R.styleable.PassWordLayoutStyle_interval_width, 4);
+        mInputColor = ta.getResourceId(R.styleable.PassWordLayoutStyle_box_input_color, R.color.pass_view_rect_input);
+        mNoinputColor = ta.getResourceId(R.styleable.PassWordLayoutStyle_box_no_input_color, R.color.regi_line_color);
+        mLineColor = ta.getResourceId(R.styleable.PassWordLayoutStyle_input_line_color, R.color.pass_view_rect_input);
+        mTxtInputColor = ta.getResourceId(R.styleable.PassWordLayoutStyle_text_input_color, R.color.pass_view_rect_input);
+        mDrawType = ta.getInt(R.styleable.PassWordLayoutStyle_box_draw_type, 0);
+        mInterval = ta.getDimensionPixelOffset(R.styleable.PassWordLayoutStyle_interval_width, 4);
         maxLength = ta.getInt(R.styleable.PassWordLayoutStyle_pass_leng, 6);
-        int itemWidth = ta.getInt(R.styleable.PassWordLayoutStyle_item_width, 40);
-        int itemHeight = ta.getInt(R.styleable.PassWordLayoutStyle_item_height, 40);
-        int showPassType = ta.getInt(R.styleable.PassWordLayoutStyle_pass_inputed_type, 0);
-        int txtSize = ta.getInt(R.styleable.PassWordLayoutStyle_draw_txt_size, 18);
-        int boxLineSize = ta.getInt(R.styleable.PassWordLayoutStyle_draw_box_line_size, 4);
+        mItemWidth = ta.getDimensionPixelOffset(R.styleable.PassWordLayoutStyle_item_width, 40);
+        mItemHeight = ta.getDimensionPixelOffset(R.styleable.PassWordLayoutStyle_item_height, 40);
+        mShowPassType = ta.getInt(R.styleable.PassWordLayoutStyle_pass_inputed_type, 0);
+        mTxtSize = ta.getDimensionPixelOffset(R.styleable.PassWordLayoutStyle_draw_txt_size, 18);
+        mBoxLineSize = ta.getDimensionPixelOffset(R.styleable.PassWordLayoutStyle_draw_box_line_size, 4);
         mIsShowInputLine = ta.getBoolean(R.styleable.PassWordLayoutStyle_is_show_input_line, true);
         ta.recycle();
 
@@ -87,27 +98,6 @@ public class PassWordLayout extends LinearLayout {
 
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
-
-        for (int i = 0; i < maxLength; i++) {
-            PassWordView passWordView = new PassWordView(context);
-            LayoutParams params = new LayoutParams(DensityUtil.dip2px(mContext, itemWidth), DensityUtil.dip2px(mContext, itemHeight));
-            if (i != 0) {                                       //第一个子View不添加边距
-                params.leftMargin = DensityUtil.dip2px(context, DensityUtil.dip2px(mContext, interval));
-            }
-
-            passWordView.setInputStateColor(inputColor);
-            passWordView.setNoinputColor(noinputColor);
-            passWordView.setInputStateTextColor(txtInputColor);
-            passWordView.setRemindLineColor(lineColor);
-            passWordView.setmBoxDrawType(drawType);
-            passWordView.setmShowPassType(showPassType);
-            passWordView.setmDrawTxtSize(txtSize);
-            passWordView.setmDrawBoxLineSize(boxLineSize);
-            passWordView.setmIsShowRemindLine(mIsShowInputLine);
-
-            addView(passWordView, params);
-        }
-
 
         //设置点击时弹出输入法
         setOnClickListener(new OnClickListener() {
@@ -142,6 +132,47 @@ public class PassWordLayout extends LinearLayout {
         });
     }
 
+    /**
+     * 添加子View
+     *
+     * @param context
+     */
+    private void addChildVIews(Context context) {
+        for (int i = 0; i < maxLength; i++) {
+            PassWordView passWordView = new PassWordView(context);
+            LayoutParams params = new LayoutParams(mItemWidth, mItemHeight);
+            if (i > 0) {                                       //第一个和最后一个子View不添加边距
+                params.leftMargin = mInterval;
+            }
+
+            passWordView.setInputStateColor(mInputColor);
+            passWordView.setNoinputColor(mNoinputColor);
+            passWordView.setInputStateTextColor(mTxtInputColor);
+            passWordView.setRemindLineColor(mLineColor);
+            passWordView.setmBoxDrawType(mDrawType);
+            passWordView.setmShowPassType(mShowPassType);
+            passWordView.setmDrawTxtSize(mTxtSize);
+            passWordView.setmDrawBoxLineSize(mBoxLineSize);
+            passWordView.setmIsShowRemindLine(mIsShowInputLine);
+
+            addView(passWordView, params);
+        }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        if (getChildCount() == 0) {     //判断 子View宽+边距是否超过了父布局 超过了则重置宽高
+            if ((maxLength * mItemWidth + (maxLength - 1) * mInterval) > getMeasuredWidth()) {
+                mItemWidth = (getMeasuredWidth() - (maxLength - 1) * mInterval) / maxLength;
+                mItemHeight = mItemWidth;
+            }
+
+            addChildVIews(getContext());
+        }
+
+    }
 
     /**
      * 添加密码

@@ -10,8 +10,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.lxj.passView.utils.DensityUtil;
-
 
 /**
  * 密码框
@@ -135,7 +133,7 @@ public class PassWordView extends View {
         if (modeWidth == MeasureSpec.EXACTLY) {//如果是精确测量 则直接返回值
             width = sizeWidth;
         } else {//指定宽度的大小
-            width = DensityUtil.dip2px(mContext, mWidth);
+            width = mWidth;
             if (modeWidth == MeasureSpec.AT_MOST) {//如果是最大值模式  取当中的小值  防止超出父类控件的最大值
                 width = Math.min(width, sizeWidth);
             }
@@ -144,7 +142,7 @@ public class PassWordView extends View {
         if (modeHeight == MeasureSpec.EXACTLY) {//如果是精确测量 则直接返回值
             height = sizeHeight;
         } else {//指定高度的大小
-            height = DensityUtil.dip2px(mContext, mheight);
+            height = mheight;
             if (modeHeight == MeasureSpec.AT_MOST) {//如果是最大值模式  取当中的小值  防止超出父类控件的最大值
                 height = Math.min(height, sizeHeight);
             }
@@ -164,7 +162,7 @@ public class PassWordView extends View {
     }
 
     /**
-     *  //绘制输入文本或密码图案
+     * //绘制输入文本或密码图案
      *
      * @param canvas
      */
@@ -175,7 +173,7 @@ public class PassWordView extends View {
             mPaint.setStyle(Paint.Style.FILL);//实心
             switch (mShowPassType) {
                 case 0:                                     //绘制圆心
-                    canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, 12, mPaint);
+                    canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, 8, mPaint);
                     break;
                 case 1:                                      //绘制*
                     mPaint.setTextSize(getMeasuredWidth() / 2 + 10);
@@ -186,7 +184,7 @@ public class PassWordView extends View {
                     canvas.drawText("*", baseX, baseY, mPaint);
                     break;
                 case 2:                                     //绘制输入数据
-                    mPaint.setTextSize(DensityUtil.sp2px(mContext, mDrawTxtSize));//绘制字体大小
+                    mPaint.setTextSize(mDrawTxtSize);//绘制字体大小
                     float stringWidth2 = mPaint.measureText(mPassText);
 
                     float baseY2 = (getMeasuredHeight() / 2 - ((mPaint.descent() + mPaint.ascent()) / 2)) + stringWidth2 / 5;  //实现y轴居中方法
